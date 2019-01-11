@@ -1,0 +1,11 @@
+{
+  "name": "favcodeapplicationbackend",
+  "version": "1.0.0",
+  "description": "backend for favcode's application system",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Favour ori",
+  "license": "ISC"
+}
