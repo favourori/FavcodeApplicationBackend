@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
   );
 });
 
-app.get("/api/application", (req, res) => {
+app.get("/api/applications", (req, res) => {
   Application.find()
     .then(allApplications => {
       res.status(200).send(allApplications);
