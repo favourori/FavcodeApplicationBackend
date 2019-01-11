@@ -5,7 +5,7 @@ let bodyParser = require("body-parser");
 let Application = require("./model/application");
 
 //middlewares
-
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
