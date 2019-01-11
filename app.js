@@ -1,6 +1,20 @@
 let express = require("express");
 let app = express();
 let mongoose = require("mongoose");
+let bodyParser = require("body-parser");
+
+//middlewares
+
+app.use(bodyParser);
+
+//connecting to mongoose
+mongoose.connect(
+  "",
+
+  { useNewUrlParser: true }
+);
+
+
 
 app.get("/", (req, res) => {
   res.send(
@@ -8,8 +22,12 @@ app.get("/", (req, res) => {
   );
 });
 
+app.get("/api/application", (req, res) => {
+  res.status(200).send("All submitted Applications");
+});
+
 app.post("/api/application", (req, res) => {
-  res.semd("Post here..");
+  res.send("Post here..");
 });
 
 let PORT = process.env.PORT || 3000;
