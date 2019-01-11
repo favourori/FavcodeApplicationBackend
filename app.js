@@ -8,7 +8,6 @@ let Application = require("./model/application");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-
 app.get("/", (req, res) => {
   res.send(
     "<h2>Api for Favcode54's Application System</h2> <small>Developed by Favour Ori</small>"
@@ -16,7 +15,13 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/application", (req, res) => {
-  res.status(200).send("All submitted Applications");
+  Application.find()
+    .then(allApplications => {
+      res.status(200).send(allApplications);
+    })
+    .catch(err => {
+      res.send(err.message);
+    });
 });
 
 app.post("/api/application", (req, res) => {
@@ -32,7 +37,6 @@ app.post("/api/application", (req, res) => {
     course: req.body.course,
     level: req.body.level,
     question: req.body.question
-    
   });
 
   application

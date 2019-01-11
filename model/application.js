@@ -2,7 +2,7 @@ let mongoose = require("mongoose");
 
 //connecting to mongoose
 mongoose.connect(
-  "",
+  "mongodb://favourtheo:1A2b3c--@ds153304.mlab.com:53304/favcode54application",
 
   { useNewUrlParser: true }
 );
