@@ -2,18 +2,11 @@ let express = require("express");
 let app = express();
 let mongoose = require("mongoose");
 let bodyParser = require("body-parser");
+let Application = require("./model/application");
 
 //middlewares
 
-app.use(bodyParser);
-
-//connecting to mongoose
-mongoose.connect(
-  "",
-
-  { useNewUrlParser: true }
-);
-
+app.use(bodyParser.urlencoded({ extended: false }));
 
 
 app.get("/", (req, res) => {
@@ -27,7 +20,29 @@ app.get("/api/application", (req, res) => {
 });
 
 app.post("/api/application", (req, res) => {
-  res.send("Post here..");
+  let application = new Application({
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    gender: req.body.gender,
+    state: req.body.state,
+    country: req.body.country,
+    dob: req.body.dob,
+    email: req.body.email,
+    phone: req.body.phone,
+    course: req.body.course,
+    level: req.body.level,
+    question: req.body.question
+    
+  });
+
+  application
+    .save()
+    .then(newApplication => {
+      res.status(200).send(newApplication);
+    })
+    .catch(err => {
+      res.send(err.message);
+    });
 });
 
 let PORT = process.env.PORT || 3000;
