@@ -4,6 +4,8 @@ let mongoose = require("mongoose");
 let bodyParser = require("body-parser");
 let Application = require("./model/application");
 
+const nodemailer = require("nodemailer");
+
 //middlewares
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -47,14 +49,20 @@ app.post("/api/application", (req, res) => {
     question: req.body.question
   });
 
-  application
-    .save()
-    .then(newApplication => {
-      res.status(200).send(newApplication);
-    })
-    .catch(err => {
-      res.send(err.message);
-    });
+  Application.findOne({ email: req.body.email }).then(data => {
+    if (data) {
+      res.send("You have already submitted an Application!");
+    } else {
+      application
+        .save()
+        .then(newApplication => {
+          res.status(200).send(newApplication);
+        })
+        .catch(err => {
+          res.send(err.message);
+        });
+    }
+  });
 });
 
 let PORT = process.env.PORT || 3000;
