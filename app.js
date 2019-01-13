@@ -52,6 +52,7 @@ app.post("/api/application", (req, res) => {
   Application.findOne({ email: req.body.email }).then(data => {
     if (data) {
       res.send("You have already submitted an Application!");
+      console.log("You have already submitted an Application!");
     } else {
       application
         .save()
