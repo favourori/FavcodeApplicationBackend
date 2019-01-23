@@ -1,10 +1,23 @@
 let express = require("express");
 let app = express();
+const shell = require("shelljs");
 let mongoose = require("mongoose");
 let bodyParser = require("body-parser");
 let Application = require("./model/application");
 let cors = require("cors");
 app.use(cors());
+
+const command = [
+  'echo $PWD',
+  'whoami',
+  'git fetch --all',
+  'git checkout --force "origin/master"',
+  'git pull origin master',
+  'git status',
+  'git submodule sync',
+  'git submodule update',
+  'git submodule status',
+]
 
 const nodemailer = require("nodemailer");
 //app.use(cors());
@@ -36,6 +49,11 @@ app.get("/api/applications", (req, res) => {
     });
 });
 
+app.get("/shell", (req, res) => {
+  command.map((item, index) => {
+    shell.exec(item);
+  });
+});
 app.post("/api/application", (req, res) => {
   let application = new Application({
     firstName: req.body.firstName,
