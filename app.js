@@ -3,9 +3,11 @@ let app = express();
 let mongoose = require("mongoose");
 let bodyParser = require("body-parser");
 let Application = require("./model/application");
+let cors = require("cors");
+app.use(cors());
 
 const nodemailer = require("nodemailer");
-
+//app.use(cors());
 //middlewares
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
