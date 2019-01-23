@@ -8,16 +8,16 @@ let cors = require("cors");
 app.use(cors());
 
 const command = [
-  'echo $PWD',
-  'whoami',
-  'git fetch --all',
+  "echo $PWD",
+  "whoami",
+  "git fetch --all",
   'git checkout --force "origin/master"',
-  'git pull origin master',
-  'git status',
-  'git submodule sync',
-  'git submodule update',
-  'git submodule status',
-]
+  "git pull origin master",
+  "git status",
+  "git submodule sync",
+  "git submodule update",
+  "git submodule status"
+];
 
 const nodemailer = require("nodemailer");
 //app.use(cors());
@@ -53,6 +53,7 @@ app.get("/shell", (req, res) => {
   command.map((item, index) => {
     shell.exec(item);
   });
+  res.send("Worked");
 });
 app.post("/api/application", (req, res) => {
   let application = new Application({
