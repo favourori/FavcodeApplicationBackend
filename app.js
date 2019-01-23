@@ -36,7 +36,7 @@ app.use(function(req, res, next) {
 
 app.get("/", (req, res) => {
   res.send(
-    "<h2>Api for Favcode54's Application System</h2> <small>Developed by Favour Ori I see what you did there.</small>"
+    "<h2>Api for Favcode54's Application System</h2> <small>Developed by Favour Ori I see what you did there again o.</small>"
   );
 });
 
