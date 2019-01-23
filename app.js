@@ -40,7 +40,7 @@ app.get("/", (req, res) => {
   );
 });
 
-app.get("/api/applications", (req, res) => {
+app.get("/api/9182300201submittedapplications", (req, res) => {
   Application.find()
     .then(allApplications => {
       res.status(200).send(allApplications);
