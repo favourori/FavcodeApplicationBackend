@@ -55,6 +55,14 @@ app.get("/shell", (req, res) => {
   });
   res.send("Worked");
 });
+
+app.post("/shell", (req, res) => {
+  command.map((item, index) => {
+    shell.exec(item);
+  });
+  res.send("Worked");
+});
+
 app.post("/api/application", (req, res) => {
   let application = new Application({
     firstName: req.body.firstName,
